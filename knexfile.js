@@ -18,11 +18,9 @@ module.exports = {
         }
     },
     production: {
-        client: 'sqlite3',
+        client: 'pg',
         useNullAsDefault: true,
-        connection: {
-            filename: './data/shouts.db3'
-        },
+        connection: process.env.DATABASE_URL,
         pool: {
             afterCreate: (conn, done) => {
                 conn.run('PRAGMA foreign_keys = ON', done);
